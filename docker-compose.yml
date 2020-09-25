@@ -1,0 +1,20 @@
+version: '3'
+services:
+  custom_nginx:
+    image: billchee1997/custom_nginx:0.1.0
+    depends_on:
+      - simple_server
+    build:
+      context: .
+      dockerfile: ubuntu.Dockerfile
+    ports:
+      - 80:80
+    container_name: custom_nginx
+  simple_server:
+    build:
+      context: .
+      dockerfile: flask.Dockerfile
+    image: billchee1997/simple_server:0.1.0
+    container_name: simple_server
+    ports:
+      - 42000:42000
